@@ -55,7 +55,7 @@ for ii=1:ntimefiles
     
     nT = reader.getSizeT;
     
-    h5file = geth5name(filename);
+    h5file = geth5name2(filename,'_Simple Segmentation');
     
     if exist(h5file,'file')
         usemask = 1;
@@ -84,7 +84,7 @@ for ii=1:ntimefiles
         % setup string to hold all the error messages for this frame number
         userParam.errorStr = sprintf('frame= %d\n', nimg);
         
-        [nuc, fimg] = preprocessImages(nuc,fimg);
+%         [nuc, fimg] = preprocessImages(nuc,fimg);
         
         %record some info about image file.
         imgfiles(nimg).filestruct=ff;

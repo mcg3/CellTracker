@@ -11,8 +11,6 @@ fprintf(1, '%s called to define params\n',mfilename);
 % the runSegmentCellsZStack60X function.  if not specified, the default is
 % provided in the function
 
-userParam.softtype = 1;% one for Olympus
-
 userParam.sizeImg = [2048,2048];
 % When verbose=1 set, image of field of cells produced with diagnostics. If
 % newFigure=1 these will pile up for successive times and eventually crash MATLAB 
@@ -22,29 +20,29 @@ userParam.newFigure = 0;
 
 %for single cells vs circular colonies:coltype=1 (uses distance-based colonies
 %grouping) coltype=0 uses alphavolume to group circular colonies
-userParam.coltype = 1;
+userParam.coltype = 0;
 
 % when groupinf colonies by distance need to supply the parameter to still
 % consider cells within one colony ( 80 works for microcolonies at 20X
 % magnification
-userParam.colonygrouping = 80;% 120 for 60X
+userParam.colonygrouping = 100;% 120 for 60X
 
 %%%%%%%%%%%%%%% used in segmentCells()  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 userParam.verboseSegmentCells = 0;% set to 0, not to print the detailed info on segmentation 
 
 
 % image smoothing parameters 
-userParam.gaussRadius=6;% 4 is good for 10x images;6 is ok for 20X
+userParam.gaussRadius=9;% 4 is good for 10x images;6 is ok for 20X
 userParam.gaussSigma=3; % 3
 
 %%%%Background parameters
 userParam.backgroundSmoothRad=50;
-userParam.backgroundSmoothSig=10;  
-userParam.backgroundOpenRad = 50;
+userParam.backgroundSmoothSig=10;  %10
+userParam.backgroundOpenRad = 50;% 50
 
 userParam.presubNucBackground=0;%
 userParam.presubSmadBackground=0;
-userParam.backdiskrad = 200; 
+userParam.backdiskrad = 200; % 200
 
 %%%%%%%%%%%%% Parameters for countNuc(): %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Filtering of nuclei done in three steps: 
@@ -68,12 +66,12 @@ userParam.radiusMin = 20; %22
 userParam.radiusMax = 39; %37
 userParam.minNucSep = 10;%10
 userParam.nucIntensityRange = 30;   % value depends on radiusMin/Max 
-userParam.nucIntensityLoc  = 190;  % 860
+userParam.nucIntensityLoc  =2000;  % 800
 
 
 %Prior parameters for filtering nuclei based on size/shape, etc from AW
 %(Area)
-userParam.nucAreaLo =400; %370 measure the actual values and decide on this parameter
+userParam.nucAreaLo =300; %370 measure the actual values and decide on this parameter
 userParam.nucAreaHi = 4500;  % not too big
 
 
@@ -81,7 +79,7 @@ userParam.nucAreaHi = 4500;  % not too big
 
 
 %parameters for cytoplasm calculation
-userParam.donutRadiusMin = 4;  % 5 must be >=0
+userParam.donutRadiusMin = 2;  % 5 must be >=0
 userParam.donutRadiusMax = 6;  % 8 set to zero to skip 
 userParam.forceDonut = 1; 
 userParam.minPtsCytoplasm = 5;%5
